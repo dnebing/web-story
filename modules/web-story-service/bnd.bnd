@@ -1,0 +1,6 @@
+Bundle-Name: DNebinger Web Story Service
+Bundle-SymbolicName: com.dnebinger.webstory.service
+Bundle-Version: 1.0.0
+Liferay-Require-SchemaVersion: 1.0.0
+Liferay-Service: true
+-dsannotations-options: inherit

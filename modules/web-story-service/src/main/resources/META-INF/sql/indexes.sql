@@ -1,0 +1,10 @@
+create index IX_45BF0FE4 on WS_WebStory (companyId, status);
+create index IX_B63BB01E on WS_WebStory (companyId, userId, status);
+create index IX_977E1BE6 on WS_WebStory (groupId, status);
+create unique index IX_36094BDD on WS_WebStory (groupId, urlTitle[$COLUMN_LENGTH:75$]);
+create index IX_36B79A20 on WS_WebStory (groupId, userId, status);
+create unique index IX_F525147 on WS_WebStory (urlTitle[$COLUMN_LENGTH:75$]);
+create index IX_FEEB7006 on WS_WebStory (userId, groupId);
+create index IX_9BBD680A on WS_WebStory (userId, status);
+create index IX_F6141A5E on WS_WebStory (uuid_[$COLUMN_LENGTH:75$], companyId);
+create unique index IX_3FFBA060 on WS_WebStory (uuid_[$COLUMN_LENGTH:75$], groupId);

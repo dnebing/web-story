@@ -1,0 +1,10 @@
+Bundle-Name: DNebinger Web Story API
+Bundle-SymbolicName: com.dnebinger.webstory.api
+Bundle-Version: 1.0.0
+Export-Package:\
+	com.dnebinger.webstory.exception,\
+	com.dnebinger.webstory.model,\
+	com.dnebinger.webstory.service,\
+	com.dnebinger.webstory.service.persistence
+-check: EXPORTS
+-includeresource: META-INF/service.xml=../web-story-service/service.xml

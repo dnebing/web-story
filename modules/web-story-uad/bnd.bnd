@@ -1,0 +1,4 @@
+Bundle-Name: DNebinger Web Story UAD
+Bundle-SymbolicName: com.dnebinger.webstory.uad
+Bundle-Version: 1.0.0
+-dsannotations-options: inherit

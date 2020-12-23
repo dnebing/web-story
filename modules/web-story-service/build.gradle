@@ -1,0 +1,29 @@
+dependencies {
+	compile project(":modules:web-story-api")
+
+	compileOnly group: "com.liferay.portal", name: "release.portal.api"
+	compileOnly group: "com.liferay", name: "com.liferay.friendly.url.api"
+	compileOnly group: "com.liferay", name: "com.liferay.petra.function"
+	compileOnly group: "com.liferay", name: "com.liferay.petra.lang"
+	compileOnly group: "com.liferay", name: "com.liferay.petra.string"
+	compileOnly group: "com.liferay", name: "com.liferay.portal.aop.api"
+	compileOnly group: "com.liferay", name: "com.liferay.trash.api"
+	compileOnly group: "com.liferay.portal", name: "com.liferay.portal.kernel"
+	compileOnly group: "com.liferay", name: "com.liferay.portal.validation.api"
+
+	compileOnly group: "commons-io", name: "commons-io"
+	compileOnly group: "commons-lang", name: "commons-lang"
+
+	compileOnly group: "org.osgi", name: "org.osgi.annotation.versioning"
+	compileOnly group: "org.osgi", name: "org.osgi.service.cm", version: "1.5.0"
+	compileOnly group: "org.osgi", name: "org.osgi.service.component.annotations"
+	compileOnly group: "org.osgi", name: "osgi.core", version: "6.0.0"
+	compileOnly group: 'org.slf4j', name: 'slf4j-api'
+
+}
+
+buildService {
+	apiDir = "../web-story-api/src/main/java"
+}
+
+group = "com.dnebinger.webstory"
