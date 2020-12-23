@@ -21,6 +21,7 @@ import com.dnebinger.webstory.service.base.WebStoryLocalServiceBaseImpl;
 import com.liferay.portal.aop.AopService;
 
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.model.ResourceConstants;
 import com.liferay.portal.kernel.service.ServiceContext;
 import org.osgi.service.component.annotations.Component;
 import org.slf4j.Logger;
@@ -67,6 +68,12 @@ public class WebStoryLocalServiceImpl extends WebStoryLocalServiceBaseImpl {
 		// persist the entity
 		story = webStoryPersistence.update(story, serviceContext);
 
+		// process the resources
+		resourceLocalService.addResources(
+				story.getCompanyId(), story.getGroupId(), story.getUserId(),
+				WebStory.class.getName(), story.getWebStoryId(), false,
+				true, true);
+
 		// return it
 		return story;
 	}
@@ -93,6 +100,11 @@ public class WebStoryLocalServiceImpl extends WebStoryLocalServiceBaseImpl {
 		WebStory story;
 
 		story = webStoryPersistence.remove(webStory);
+
+		// delete the resources
+		resourceLocalService.deleteResource(
+				story.getCompanyId(), WebStory.class.getName(),
+				ResourceConstants.SCOPE_INDIVIDUAL, story.getWebStoryId());
 
 		return story;
 	}
