@@ -10,6 +10,8 @@ dependencies {
 	compileOnly group: "com.liferay", name: "com.liferay.trash.api"
 	compileOnly group: "com.liferay.portal", name: "com.liferay.portal.kernel"
 	compileOnly group: "com.liferay", name: "com.liferay.portal.validation.api"
+	compileOnly group: "com.liferay", name: "com.liferay.portal.search.spi"
+	compileOnly group: "com.liferay", name: "com.liferay.portal.search.api"
 
 	compileOnly group: "commons-io", name: "commons-io"
 	compileOnly group: "commons-lang", name: "commons-lang"
