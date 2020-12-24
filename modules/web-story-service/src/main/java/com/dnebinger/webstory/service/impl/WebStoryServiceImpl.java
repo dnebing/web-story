@@ -15,13 +15,20 @@
 package com.dnebinger.webstory.service.impl;
 
 import com.dnebinger.webstory.model.WebStory;
+import com.dnebinger.webstory.permission.WebStoriesPermission;
+import com.dnebinger.webstory.permission.WebStoryPermission;
 import com.dnebinger.webstory.service.base.WebStoryServiceBaseImpl;
 
+import com.liferay.blogs.model.BlogsEntry;
 import com.liferay.portal.aop.AopService;
 
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.security.permission.ActionKeys;
+import com.liferay.portal.kernel.security.permission.resource.ModelResourcePermission;
+import com.liferay.portal.kernel.security.permission.resource.ModelResourcePermissionFactory;
 import com.liferay.portal.kernel.service.ServiceContext;
 import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Reference;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -57,7 +64,7 @@ public class WebStoryServiceImpl extends WebStoryServiceBaseImpl {
 	 * @throws PortalException In case of error.
 	 */
 	public WebStory addStory(final String title, final String blurb, final String url, final ServiceContext serviceContext) throws PortalException {
-
+		_webStoriesPermission.check(getPermissionChecker(), serviceContext.getScopeGroupId(), ActionKeys.ADD_ENTRY);
 		return webStoryLocalService.addStory(title, blurb, url, serviceContext);
 	}
 
@@ -68,6 +75,7 @@ public class WebStoryServiceImpl extends WebStoryServiceBaseImpl {
 	 * @throws PortalException In case of error.
 	 */
 	public WebStory deleteStory(final long webStoryId) throws PortalException {
+		_webStoryPermission.check(getPermissionChecker(), webStoryId, ActionKeys.DELETE);
 		return webStoryLocalService.deleteStory(webStoryId);
 	}
 
@@ -78,6 +86,7 @@ public class WebStoryServiceImpl extends WebStoryServiceBaseImpl {
 	 * @throws PortalException In case of error.
 	 */
 	public WebStory deleteStory(final WebStory webStory) throws PortalException {
+		_webStoryPermission.check(getPermissionChecker(), webStory, ActionKeys.DELETE);
 		return webStoryLocalService.deleteStory(webStory);
 	}
 
@@ -92,8 +101,15 @@ public class WebStoryServiceImpl extends WebStoryServiceBaseImpl {
 	 * @throws PortalException in case of error.
 	 */
 	public WebStory updateStory(final long webStoryId, final String title, final String blurb, final String url, final ServiceContext serviceContext) throws PortalException {
+		_webStoryPermission.check(getPermissionChecker(), webStoryId, ActionKeys.UPDATE);
 		return webStoryLocalService.updateStory(webStoryId, title, blurb, url, serviceContext);
 	}
+
+	@Reference(unbind = "-")
+	private WebStoryPermission _webStoryPermission;
+
+	@Reference(unbind = "-")
+	private WebStoriesPermission _webStoriesPermission;
 
 	private static final Logger _log = LoggerFactory.getLogger(WebStoryServiceImpl.class);
 }

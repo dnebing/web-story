@@ -2,8 +2,10 @@ Bundle-Name: DNebinger Web Story API
 Bundle-SymbolicName: com.dnebinger.webstory.api
 Bundle-Version: 1.0.0
 Export-Package:\
+    com.dnebinger.webstory.constants,\
 	com.dnebinger.webstory.exception,\
 	com.dnebinger.webstory.model,\
+	com.dnebinger.webstory.permission,\
 	com.dnebinger.webstory.service,\
 	com.dnebinger.webstory.service.persistence
 -check: EXPORTS
