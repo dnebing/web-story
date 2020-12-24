@@ -22,7 +22,11 @@ import com.liferay.portal.aop.AopService;
 
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.ResourceConstants;
+import com.liferay.portal.kernel.model.SystemEventConstants;
+import com.liferay.portal.kernel.search.Indexable;
+import com.liferay.portal.kernel.search.IndexableType;
 import com.liferay.portal.kernel.service.ServiceContext;
+import com.liferay.portal.kernel.systemevent.SystemEvent;
 import org.osgi.service.component.annotations.Component;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -55,6 +59,8 @@ public class WebStoryLocalServiceImpl extends WebStoryLocalServiceBaseImpl {
 	 * @return WebStory The new instance.
 	 * @throws PortalException In case of error.
 	 */
+	@Indexable(type = IndexableType.REINDEX)
+	@Override
 	public WebStory addStory(final String title, final String blurb, final String url, final ServiceContext serviceContext) throws PortalException {
 		WebStory story = webStoryLocalService.createWebStory(counterLocalService.increment(WebStory.class.getName()));
 
@@ -96,6 +102,9 @@ public class WebStoryLocalServiceImpl extends WebStoryLocalServiceBaseImpl {
 	 * @return WebStory The deleted story.
 	 * @throws PortalException In case of error.
 	 */
+	@Indexable(type = IndexableType.DELETE)
+	@Override
+	@SystemEvent(type = SystemEventConstants.TYPE_DELETE)
 	public WebStory deleteStory(final WebStory webStory) throws PortalException {
 		WebStory story;
 
@@ -119,6 +128,8 @@ public class WebStoryLocalServiceImpl extends WebStoryLocalServiceBaseImpl {
 	 * @return WebStory The updated instance
 	 * @throws PortalException in case of error.
 	 */
+	@Indexable(type = IndexableType.REINDEX)
+	@Override
 	public WebStory updateStory(final long webStoryId, final String title, final String blurb, final String url, final ServiceContext serviceContext) throws PortalException {
 		WebStory story = webStoryLocalService.getWebStory(webStoryId);
 
